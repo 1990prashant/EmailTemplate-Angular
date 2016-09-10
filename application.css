@@ -1,0 +1,28 @@
+.top-row {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 5px;
+}
+
+li {
+  list-style: none;
+}
+
+.mail-wrapper {
+  padding: 5px 0px 5px 30px;
+}
+
+.mail-row {
+  border-bottom: 1px solid #eee;
+  padding: 5px 0px 10px 0px;
+}
+
+.mail-selecter {
+  margin-right: 30px !important;
+}
+
+.sideMenu {
+  list-style: none;
+  padding: 5px 0px;
+}
