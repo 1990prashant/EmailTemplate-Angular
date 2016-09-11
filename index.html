@@ -3,6 +3,7 @@
 <head>
   <title>W3Mail</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="application.css">
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
   <script src="application.js"></script>
@@ -28,12 +29,29 @@
           </li>
         </ul>
       </div>
+      <div class="col-md-10 col-sm-6 col-xs-12">
+        <ul>
+          <li>
+            <div class="btn btn-default">
+              <input type="checkbox" name="">
+              &nbsp;&nbsp;
+              <span class="fa fa-caret-down"></span>
+            </div>
+            <div class="btn btn-default">
+              <span class="fa fa-rotate-right"></span>
+            </div>
+            <div class="btn btn-default">
+              <span class="fa fa-trash"></span>
+            </div>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
   <div class="col-sm-2 col-xs-12">
     <ul>
       <li class="sideMenu">
-        <button>Compose</button>
+        <button class="btn btn-default" ng-click="open()">Compose</button>
       </li>
       <li class="sideMenu link-wrapper">
         <a class="link" href="" ng-click="setCurrentTag('inbox')">Inbox</a>
@@ -46,7 +64,7 @@
       </li>
     </ul>
   </div>
-  <div class="col-sm-10 col-xs-12">
+  <div class="col-sm-10 col-xs-12" ng-class="{'hide' : defaultTag != 'inbox'}">
     <ul class="nav nav-tabs">
       <li ng-class="{'active' : activeTab == 'primary'}" class="col-sm-3">
         <a href="#primaryMail" ng-click="setActiveTab('primary')">
@@ -64,6 +82,122 @@
         </a>
       </li>
     </ul>
+    <div class="tab-content">
+      <div ng-class="{'active' : activeTab == 'primary'}" class="tab-pane" id="primaryMail">
+        <ul class="mail-wrapper">
+          <li ng-repeat="mail in inboxMails | filter:activeTab" class="mail-row">
+            <div class="row">
+              <div class="col-sm-3">
+                <input type="checkbox" name="select" class="mail-selecter">
+                {{mail.from}}
+              </div>
+              <div class="col-sm-2">
+                {{mail.subject}}
+              </div>
+              <div class="col-sm-7">
+                {{mail.body}}
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div ng-class="{'active' : activeTab == 'social'}" class="tab-pane" id="socialMail">
+        <ul class="mail-wrapper">
+          <li ng-repeat="mail in mails | filter:defaultTag | filter:activeTab" class="mail-row">
+            <div class="row">
+              <div class="col-sm-3">
+                <input type="checkbox" name="select" class="mail-selecter">
+                {{mail.from}}
+              </div>
+              <div class="col-sm-2">
+                {{mail.subject}}
+              </div>
+              <div class="col-sm-7">
+                {{mail.body}}
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div ng-class="{'active' : activeTab == 'promotion'}" class="tab-pane" id="promotionMail">
+        <ul class="mail-wrapper">
+          <li ng-repeat="mail in mails | filter:defaultTag | filter:activeTab" class="mail-row">
+            <div class="row">
+              <div class="col-sm-3">
+                <input type="checkbox" name="select" class="mail-selecter">
+                {{mail.from}}
+              </div>
+              <div class="col-sm-2">
+                {{mail.subject}}
+              </div>
+              <div class="col-sm-7">
+                {{mail.body}}
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-10 col-xs-12" ng-class="{'hide' : defaultTag != 'sent'}">
+    <div class="tab-content">
+      <div ng-class="{'active' : activeTab == 'primary'}" class="tab-pane" id="primaryMail">
+        <ul class="mail-wrapper">
+          <li ng-repeat="mail in sentMails | filter:defaultTag" class="mail-row">
+            <div class="row">
+              <div class="col-sm-3">
+                <input type="checkbox" name="select" class="mail-selecter">
+                {{mail.to}}
+              </div>
+              <div class="col-sm-2">
+                {{mail.subject}}
+              </div>
+              <div class="col-sm-7">
+                {{mail.body}}
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div ng-class="{'active' : activeTab == 'social'}" class="tab-pane" id="socialMail">
+        <ul class="mail-wrapper">
+          <li ng-repeat="mail in mails | filter:defaultTag | filter:activeTab" class="mail-row">
+            <div class="row">
+              <div class="col-sm-3">
+                <input type="checkbox" name="select" class="mail-selecter">
+                {{mail.from}}
+              </div>
+              <div class="col-sm-2">
+                {{mail.subject}}
+              </div>
+              <div class="col-sm-7">
+                {{mail.body}}
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div ng-class="{'active' : activeTab == 'promotion'}" class="tab-pane" id="promotionMail">
+        <ul class="mail-wrapper">
+          <li ng-repeat="mail in mails | filter:defaultTag | filter:activeTab" class="mail-row">
+            <div class="row">
+              <div class="col-sm-3">
+                <input type="checkbox" name="select" class="mail-selecter">
+                {{mail.from}}
+              </div>
+              <div class="col-sm-2">
+                {{mail.subject}}
+              </div>
+              <div class="col-sm-7">
+                {{mail.body}}
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-10 col-xs-12" ng-class="{'hide' : defaultTag != 'trash'}">
     <div class="tab-content">
       <div ng-class="{'active' : activeTab == 'primary'}" class="tab-pane" id="primaryMail">
         <ul class="mail-wrapper">

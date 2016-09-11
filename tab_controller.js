@@ -34,7 +34,7 @@ angular.module('w3Mail', [])
       console.log('opening pop up');
       var modalInstance = $modal.open({
         templateUrl: 'popup.html',
-        controller: 'PopupCont'
+        controller: 'PopupCont',
       });
     }
 
